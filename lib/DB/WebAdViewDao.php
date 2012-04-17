@@ -33,6 +33,8 @@ class WebAdViewDao {
 		$query = "SELECT * FROM ".Database::addPrefix('webadviews')." WHERE".
 				" ip = '".$ip."' AND site = '".$site."' AND size = '".$size."'";
 		
+		echo $query;
+		
 		$result = Database::doQuery($query);
 		
 		if(mysql_num_rows($result) > 0){

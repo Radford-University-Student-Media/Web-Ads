@@ -28,7 +28,7 @@ class WebAdViewDao {
 		$site = Database::makeStringSafe($site);
 		$size = Database::makeStringSafe($size);
 		
-		$query = "SELECT FROM ".Database::addPrefix('webadviews')." WHERE".
+		$query = "SELECT * FROM ".Database::addPrefix('webadviews')." WHERE".
 				" ip = '".$ip."' AND site = '".$site."' AND size = '".$size."'";
 		
 		$result = Database::doQuery($query);

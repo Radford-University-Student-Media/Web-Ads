@@ -6,6 +6,8 @@ require_once './config.php';
 require_once './lib/DB/Database.php';
 require_once './lib/DB/WebAd.php';
 require_once './lib/DB/WebAdDao.php';
+require_once './lib/DB/WebAdView.php';
+require_once './lib/DB/WebAdViewDao.php';
 
 require_once './lib/Util/DateUtil.php';
 require_once './lib/Util/SimpleImage.php';

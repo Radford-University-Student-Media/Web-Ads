@@ -55,7 +55,7 @@ class WebAdViewDao {
 		$view = WebAdViewDao::getView($ip, $site, $size);
 		
 		if($view){
-			$query = "UPDATE".Database::addPrefix('webadviews')." SET webadID = '".$webadID."'WHERE".
+			$query = "UPDATE ".Database::addPrefix('webadviews')." SET webadID = '".$webadID."'WHERE".
 					" ip = '".$ip."' AND site = '".$site."' AND size = '".$size."'";
 			Database::doQuery($query);
 		}else{

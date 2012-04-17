@@ -19,7 +19,7 @@ class WebAdViewDao {
 		
 		$query = "INSERT INTO ".Database::addPrefix('webadviews')." SET".
 		" ip = '".$ip."', hostname = '".$hostname."', site = '".$site."'".
-		", webadID = '".$webadID."'";
+		", size = '".$size."', webadID = '".$webadID."'";
 		
 		Database::doQuery($query);
 	}

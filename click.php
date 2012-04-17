@@ -18,13 +18,18 @@ SessionUtil::start();
 if(isset($_GET['size'])){
 
 	$view = WebAdViewDao::getView($_SERVER['REMOTE_ADDR'], $_GET['site'], $_GET['size']);
-	$webad = WebAdDao::getWebAdByID($view->webadID);
+	if($view)
+		$webad = WebAdDao::getWebAdByID($view->webadID);
+	else
+		$webad = WebAd::getDefaultAd($_GET['size'], null);
+	
+	echo serialize($view);
 	
 	if($webad){
 		WebAdDao::incrementClicks($webad);
-		header("Location: ".$webad->getRedirectUrl());
+		//header("Location: ".$webad->getRedirectUrl());
 	}else{
-		header("Location: ".WebAd::getDefaultAd($_GET['size'])->getRedirectUrl());
+		//header("Location: ".WebAd::getDefaultAd($_GET['size'])->getRedirectUrl());
 	}
 
 }

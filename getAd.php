@@ -22,7 +22,7 @@ if(isset($_GET['size'])){
 	
 	if(!$webad){
 		//SessionUtil::setLastViewed($_GET['size'], 0);
-		WebAdViewDao::setView($_SERVER['REMOTE_ADDR'], $_SERVER['REMOTE_HOST'], $_GET['site'], $_GET['size'], 0);
+		WebAdViewDao::setView($_SERVER['REMOTE_ADDR'], gethostbyaddr($_SERVER['REMOTE_ADDR']), $_GET['site'], $_GET['size'], 0);
 		$image = new SimpleImage();
 		$image->load('./images/notfound.png');
 		header('Content-Type: image/jpeg');
@@ -30,7 +30,7 @@ if(isset($_GET['size'])){
 		Database::Close();
 		exit();
 	}else{
-		WebAdViewDao::setView($_SERVER['REMOTE_ADDR'], $_SERVER['REMOTE_HOST'], $_GET['site'], $_GET['size'], $webad->getID());
+		WebAdViewDao::setView($_SERVER['REMOTE_ADDR'], gethostbyaddr($_SERVER['REMOTE_ADDR']), $_GET['site'], $_GET['size'], $webad->getID());
 		//SessionUtil::setLastViewed($_GET['size'], $webad->getID());
 		$image_info = getimagesize($webad->getImage());
 		$image_type = $image_info[2];

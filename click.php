@@ -17,7 +17,8 @@ SessionUtil::start();
 
 if(isset($_GET['size'])){
 
-	$webad = WebAdDao::getWebAdByID(SessionUtil::getLastViewed($_GET['size']));
+	$view = WebAdViewDao::getView($_SERVER['REMOTE_ADDR'], $_GET['site'], $_GET['size']);
+	$webad = WebAdDao::getWebAdByID($view->webadID);
 	
 	if($webad){
 		WebAdDao::incrementClicks($webad);

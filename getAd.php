@@ -6,6 +6,7 @@ require_once './config.php';
 require_once './lib/DB/Database.php';
 require_once './lib/DB/WebAd.php';
 require_once './lib/DB/WebAdDao.php';
+require_once './lib/DB/WebAdViewDao.php';
 
 require_once './lib/Util/DateUtil.php';
 require_once './lib/Util/SimpleImage.php';
@@ -20,7 +21,8 @@ if(isset($_GET['size'])){
 	$webad = WebAdDao::getRandomAdBySizeAndDate($_GET['size'], Database::CurrentMySQLDate(), true);
 	
 	if(!$webad){
-		SessionUtil::setLastViewed($_GET['size'], 0);
+		//SessionUtil::setLastViewed($_GET['size'], 0);
+		WebAdViewDao::setView($_SERVER['REMOTE_ADDR'], $_SERVER['REMOTE_HOST'], $_GET['site'], $_GET['size'], 0);
 		$image = new SimpleImage();
 		$image->load('./images/notfound.png');
 		header('Content-Type: image/jpeg');
@@ -28,7 +30,8 @@ if(isset($_GET['size'])){
 		Database::Close();
 		exit();
 	}else{
-		SessionUtil::setLastViewed($_GET['size'], $webad->getID());
+		WebAdViewDao::setView($_SERVER['REMOTE_ADDR'], $_SERVER['REMOTE_HOST'], $_GET['site'], $_GET['size'], $webad->getID());
+		//SessionUtil::setLastViewed($_GET['size'], $webad->getID());
 		$image_info = getimagesize($webad->getImage());
 		$image_type = $image_info[2];
 		if( $image_type == IMAGETYPE_JPEG ) {

@@ -6,6 +6,8 @@ require_once './config.php';
 require_once './lib/DB/Database.php';
 require_once './lib/DB/WebAd.php';
 require_once './lib/DB/WebAdDao.php';
+require_once './lib/DB/WebAdView.php';
+require_once './lib/DB/WebAdViewDao.php';
 
 require_once './lib/Util/DateUtil.php';
 require_once './lib/Util/SimpleImage.php';
@@ -17,7 +19,11 @@ SessionUtil::start();
 
 if(isset($_GET['size'])){
 
-	$webad = WebAdDao::getWebAdByID(SessionUtil::getLastViewed($_GET['size']));
+	$view = WebAdViewDao::getView($_SERVER['REMOTE_ADDR'], $_GET['site'], $_GET['size']);
+	if($view)
+		$webad = WebAdDao::getWebAdByID($view->webadID);
+	else
+		$webad = WebAd::getDefaultAd($_GET['size'], null);
 	
 	if($webad){
 		WebAdDao::incrementClicks($webad);

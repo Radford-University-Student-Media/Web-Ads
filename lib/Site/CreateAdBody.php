@@ -42,7 +42,7 @@ class CreateAdBody extends Body{
 			<label for=\"name\" class=\"above\">Name</label>
 			<input type=\"text\" name=\"name\" placeholder=\"Name\" class=\"bluefocus text\" tabindex=\"1\"\>
 			<label for=\"start\" class=\"above\">Starting Date</label>
-			<input type=\"text\" readonly name=\"start\" placeholder=\"Starting Date\" class=\"bluefocus text date\" tabindex=\"3\"\><br /><br />
+			<input type=\"text\" readonly name=\"start\" placeholder=\"Starting Date\" class=\"bluefocus text date\" tabindex=\"3\"\><br />
 			<label for=\"start\" class=\"above\">Ending Date</label>
 			<input type=\"text\" readonly name=\"end\" placeholder=\"Ending Date\" class=\"bluefocus text date\" tabindex=\"4\"\><br /><br />
 			<!--<input type=\"button\" name=\"selectimage\" value=\"Select Sample Image\" onclick=\"javascript:$('#image').show();$('#image').focus();$('#image').click();$('#image').hide();\" class=\"stdbutton bluefocus\" tabindex=\"4\">-->

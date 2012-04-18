@@ -10,11 +10,12 @@ class WebAdDao {
 		return new WebAd($row['webadID'], $row['name'], $row['StartingMonday'], $row['Size'], $row['Image'], $row['Impressions'], $row['Clicks'], $row['redirectUrl'], $row['StartDate'], $row['EndDate']);
 	}
 	
-	public static function createWebAd($name, $monday, $size, $image, $url){
+	public static function createWebAd($name, $monday, $size, $image, $url, $start, $end){
 		
 		$query = "INSERT INTO ".Database::addPrefix('webads')." SET name = '".$name."',
 			StartingMonday = '".$monday."', Size = '".$size."' , Image = '".$image."',
-			redirectUrl = '".Database::makeStringSafe($url)."'";
+			redirectUrl = '".Database::makeStringSafe($url)."', StartDate = '".$start."',
+			EndDate = '".$end."'";
 		
 		Database::doQuery($query);
 		

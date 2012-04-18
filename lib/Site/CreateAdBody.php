@@ -53,7 +53,7 @@ class CreateAdBody extends Body{
 			<label for=\"size\" class=\"above\">Size</label>
 			".Size::getSelectHTHL("size", 5)."<br /><br />
 			
-		<input type=\"file\" name=\"image\" id=\"image\" style=\"\" tabindex=\"6\"/>
+			<input type=\"file\" name=\"image\" id=\"image\" style=\"\" tabindex=\"6\"/><br />
 			<input type=\"submit\" value=\"Create\" class=\"stdbutton bluefocus\" tabindex=\"7\"/>
 		</div>
 		<input type=\"hidden\" name=\"action\" value=\"createAd\" />

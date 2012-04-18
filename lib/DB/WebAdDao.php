@@ -6,19 +6,22 @@ require_once './lib/DB/WebAd.php';
 require_once './lib/Util/DateUtil.php';
 
 class WebAdDao {
-
-	public static function createWebAd($name, $monday, $size, $image, $url){
+	private static function makeAd($row) {
+		return new WebAd($row['webadID'], $row['name'], $row['StartingMonday'], $row['Size'], $row['Image'], $row['Impressions'], $row['Clicks'], $row['redirectUrl'], $row['StartDate'], $row['EndDate']);
+	}
+	
+	public static function createWebAd($name, $monday, $size, $image, $url, $start, $end){
 		
 		$query = "INSERT INTO ".Database::addPrefix('webads')." SET name = '".$name."',
 			StartingMonday = '".$monday."', Size = '".$size."' , Image = '".$image."',
-			redirectUrl = '".Database::makeStringSafe($url)."'";
+			redirectUrl = '".Database::makeStringSafe($url)."', StartDate = '".$start."',
+			EndDate = '".$end."'";
 		
 		Database::doQuery($query);
 		
 		$row = mysql_fetch_assoc(Database::doQuery("SELECT * FROM ".Database::addPrefix('webads')." ORDER BY webadID DESC LIMIT 1"));
 		
-		return new WebAd($row['webadID'], $row['name'], $row['StartingMonday'], $row['Size'], $row['Image'], $row['Impressions'], $row['Clicks'], $row['redirectUrl']);
-		
+		return WebAdDao::makeAd($row);		
 	}
 	
 	public static function getWebAdByID($id){
@@ -28,7 +31,7 @@ class WebAdDao {
 		$row = mysql_fetch_assoc($result);
 		
 		if(mysql_num_rows($result) > 0)
-			return new WebAd($row['webadID'], $row['name'], $row['StartingMonday'], $row['Size'], $row['Image'], $row['Impressions'], $row['Clicks'],  $row['redirectUrl']);
+			return WebAdDao::makeAd($row);
 		else
 			return null;
 		
@@ -51,7 +54,7 @@ class WebAdDao {
 		$result = Database::doQuery($query);
 		
 		$row = mysql_fetch_assoc($result);
-		$webad = new WebAd($row['webadID'], $row['name'], $row['StartingMonday'], $row['Size'], $row['Image'], $row['Impressions'], $row['Clicks'],  $row['redirectUrl']);
+		$webad = WebAdDao::makeAd($row);
 		
 		if($incrementImpression)
 			WebAdDao::incrementImpression($webad);
@@ -67,7 +70,7 @@ class WebAdDao {
 		$webads = array();
 		
 		while($row = mysql_fetch_assoc($result)){
-			$webads[] = new WebAd($row['webadID'], $row['name'], $row['StartingMonday'], $row['Size'], $row['Image'], $row['Impressions'], $row['Clicks'],  $row['redirectUrl']);
+			$webads[] = WebAdDao::makeAd($row);
 		}
 		
 		if(mysql_num_rows($result) > 0){
@@ -91,7 +94,7 @@ class WebAdDao {
 		$webads = array();
 		
 		while($row = mysql_fetch_assoc($result)){
-			$webads[] = new WebAd($row['webadID'], $row['name'], $row['StartingMonday'], $row['Size'], $row['Image'], $row['Impressions'], $row['Clicks'],  $row['redirectUrl']);
+			$webads[] = WebAdDao::makeAd($row);
 		}
 		
 		return $webads;

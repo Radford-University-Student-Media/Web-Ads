@@ -52,10 +52,11 @@ class CreateAdBody extends Body{
 			<input type=\"text\" name=\"url\" placeholder=\"Click Url\" class=\"bluefocus text\" tabindex=\"2\"\>
 			<label for=\"size\" class=\"above\">Size</label>
 			".Size::getSelectHTHL("size", 5)."<br /><br />
-			<input type=\"submit\" value=\"Create\" class=\"stdbutton bluefocus\" tabindex=\"6\"/>
+			
+		<input type=\"file\" name=\"image\" id=\"image\" style=\"\" tabindex=\"6\"/>
+			<input type=\"submit\" value=\"Create\" class=\"stdbutton bluefocus\" tabindex=\"7\"/>
 		</div>
 		<input type=\"hidden\" name=\"action\" value=\"createAd\" />
-		<input type=\"file\" name=\"image\" id=\"image\" style=\"\" tabindex=\"6\"/>
 		</form>
 		
 		</div>"; 

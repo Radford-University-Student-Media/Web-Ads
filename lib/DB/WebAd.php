@@ -5,13 +5,15 @@ class WebAd {
 	private $id;
 	private $name;
 	private $startingMonday;
+	private $startDate;
+	private $endDate;
 	private $size;
 	private $image;
 	private $impressions;
 	private $clicks;
 	private $redirectUrl;
 	
-	public function __construct($id, $name, $monday, $size, $image, $impressions, $clicks, $redirectUrl){
+	public function __construct($id, $name, $monday, $size, $image, $impressions, $clicks, $redirectUrl, $startDate, $endDate){
 		
 		$this->id = $id;
 		$this->name = $name;
@@ -21,7 +23,8 @@ class WebAd {
 		$this->impressions = $impressions;
 		$this->clicks = $clicks;
 		$this->redirectUrl = $redirectUrl;
-		
+		$this->startDate = $startDate;
+		$this->endDate = $endDate;
 	}
 	
 	public function getName(){
@@ -81,7 +84,7 @@ class WebAd {
 	}
 	
 	public function generateTRHTML(){
-		
+		// TODO: Add columns for START and END date
 		return "<tr>
 			<td>".$this->getName()."</td>
 			<td>".$this->getStartingMonday()."</td>
@@ -99,7 +102,7 @@ class WebAd {
 	
 	public static function getDefaultAd($size, $date){
 		
-		return new WebAd(0, "default", $date, $size, "./ad_images/".$size.".png", 0, 0, "http://www.radford.edu/~smads/");
+		return new WebAd(0, "default", $date, $size, "./ad_images/".$size.".png", 0, 0, "http://www.radford.edu/~smads/", Database::CurrentMySQLDate(), Database::CurrentMySQLDate());
 		
 	}
 

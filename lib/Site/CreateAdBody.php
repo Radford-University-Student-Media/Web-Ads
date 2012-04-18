@@ -41,19 +41,21 @@ class CreateAdBody extends Body{
 		<div style=\"float: left; text-align: left;\">
 			<label for=\"name\" class=\"above\">Name</label>
 			<input type=\"text\" name=\"name\" placeholder=\"Name\" class=\"bluefocus text\" tabindex=\"1\"\>
-			<label for=\"start\" class=\"above\">Starting Monday</label>
-			<input type=\"text\" readonly name=\"start\" placeholder=\"Starting Monday\" class=\"bluefocus text date\" tabindex=\"3\"\><br /><br />
+			<label for=\"start\" class=\"above\">Starting Date</label>
+			<input type=\"text\" readonly name=\"start\" placeholder=\"Starting Date\" class=\"bluefocus text date\" tabindex=\"3\"\><br /><br />
+			<label for=\"start\" class=\"above\">Ending Date</label>
+			<input type=\"text\" readonly name=\"end\" placeholder=\"Ending Date\" class=\"bluefocus text date\" tabindex=\"4\"\><br /><br />
 			<!--<input type=\"button\" name=\"selectimage\" value=\"Select Sample Image\" onclick=\"javascript:$('#image').show();$('#image').focus();$('#image').click();$('#image').hide();\" class=\"stdbutton bluefocus\" tabindex=\"4\">-->
 		</div>
 		<div style=\"float: right; text-align: right;\">
 			<label for=\"name\" class=\"above\">Click Url</label>
 			<input type=\"text\" name=\"url\" placeholder=\"Click Url\" class=\"bluefocus text\" tabindex=\"2\"\>
 			<label for=\"size\" class=\"above\">Size</label>
-			".Size::getSelectHTHL("size", 4)."<br /><br />
+			".Size::getSelectHTHL("size", 5)."<br /><br />
 			<input type=\"submit\" value=\"Create\" class=\"stdbutton bluefocus\" tabindex=\"6\"/>
 		</div>
 		<input type=\"hidden\" name=\"action\" value=\"createAd\" />
-		<input type=\"file\" name=\"image\" id=\"image\" style=\"\" tabindex=\"5\"/>
+		<input type=\"file\" name=\"image\" id=\"image\" style=\"\" tabindex=\"6\"/>
 		</form>
 		
 		</div>"; 

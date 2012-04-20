@@ -1,6 +1,7 @@
 <?php
 
 require_once './lib/DB/Database.php';
+require_once './lib/DB/SiteInsertionDao.php';
 require_once './lib/DB/WebAd.php';
 
 require_once './lib/Util/DateUtil.php';
@@ -76,10 +77,41 @@ class WebAdDao {
 		if(mysql_num_rows($result) > 0){
 
 			$webad = $webads[array_rand($webads)];
-				
+
 			if($incrementImpression)
 			WebAdDao::incrementImpression($webad);
-				
+
+			return $webad;
+
+		}else{
+			return WebAd::getDefaultAd($size, $date);
+		}
+
+	}
+
+	//SELECT * FROM webads WHERE webadID in (select WebAdID from siteinsertions where site = 'rfr')
+
+	public static function getRandomAdBySizeForDateRangeAndSite($size, $site, $date, $incrementImpression){
+
+		$size = Database::makeStringSafe($size);
+		$site = Database::makeStringSafe($site);
+		$date = Database::makeStringSafe($date);
+		
+		$query = "SELECT * FROM ".Database::addPrefix('webads')." WHERE Size = '".$size."' AND StartDate <= '".$date."' AND EndDate >= '".$date."' AND webadID in (select WebAdID from ".Database::addPrefix('siteinsertions')." where Site = '".$site."')";
+		$result = Database::doQuery($query);
+		$webads = array();
+
+		while($row = mysql_fetch_assoc($result)){
+			$webads[] = WebAdDao::makeAd($row);
+		}
+
+		if(mysql_num_rows($result) > 0){
+
+			$webad = $webads[array_rand($webads)];
+
+			if($incrementImpression)
+			WebAdDao::incrementImpression($webad);
+
 			return $webad;
 
 		}else{
@@ -101,10 +133,10 @@ class WebAdDao {
 		if(mysql_num_rows($result) > 0){
 
 			$webad = $webads[array_rand($webads)];
-				
+
 			if($incrementImpression)
 			WebAdDao::incrementImpression($webad);
-				
+
 			return $webad;
 
 		}else{
@@ -126,6 +158,7 @@ class WebAdDao {
 	}
 
 	public static function deleteAdById($webAdId){
+		SiteInsertionDao::deleteByWebAdID($webAdId);
 		Database::doQuery("DELETE FROM ".Database::addPrefix('webads')." WHERE webadID = '".Database::makeStringSafe($webAdId)."' LIMIT 1");
 	}
 

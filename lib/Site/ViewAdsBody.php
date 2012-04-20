@@ -57,9 +57,9 @@ class ViewAdsBody extends Body{
 
 		return "<br />".$this->context->getErrorHTML()."<div class=\"centered\" style=\"width: 65%\">
 		".$this->generateMondaySelectForm()."
-		<table style=\"margin-left: auto; margin-right: auto;\" border=\"0\">
+		<table style=\"width:550px; margin-left: auto; margin-right: auto;\" border=\"0\">
 		
-			<tr><th>Name</th><th>Starting Monday</th><th>Size</th><th>Impressions</th><th>Clicks</th><th>-</th></tr>
+			<tr><th>Name</th><th>Start Date</th><th>End Date</th><th>Size</th><th>Impressions</th><th>Clicks</th><th>-</th></tr>
 			".$adsHtml."
 		
 		</table>

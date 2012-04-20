@@ -84,10 +84,10 @@ class WebAd {
 	}
 	
 	public function generateTRHTML(){
-		// TODO: Add columns for START and END date
 		return "<tr>
 			<td>".$this->getName()."</td>
-			<td>".$this->getStartingMonday()."</td>
+			<td>".$this->startDate."</td>
+			<td>".$this->endDate."</td>
 			<td>".$this->getSize()."</td>
 			<td>".$this->getImpressions()."</td>
 			<td>".$this->getClicks()."</td>

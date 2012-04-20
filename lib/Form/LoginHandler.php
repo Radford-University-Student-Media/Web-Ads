@@ -10,6 +10,9 @@ class LoginHandler{
 	
 		if($action == "login"){
 		
+			//SessionUtil::setUsername($user->getUsername());
+			//$context->setPageID("home");
+			
 			$ldapAuthed = LDAPUtil::authLDAPUser($_POST['username'], $_POST['password']);
 			
 			if($ldapAuthed){

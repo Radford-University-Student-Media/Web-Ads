@@ -30,12 +30,12 @@ class CreateAdBody extends Body{
 		return $this->context->getErrorHTML()."<div class=\"centered\" style=\"width: 55%\">
 		<form action=\"index.php?pageid=createAd\" method=\"POST\" enctype=\"multipart/form-data\">
 		<div class=\"centered\">
-			<br /><input name=\"exit109\" type=\"checkbox\" checked> Exit109 
-			<input name=\"roctv\" type=\"checkbox\" checked> RocTv 
-			<input name=\"whim\" type=\"checkbox\" checked> Whim 
-			<input name=\"tartan\" type=\"checkbox\" checked> Tartan 
-			<input name=\"beehive\" type=\"checkbox\" checked> Beehive 
-			<input name=\"rfr\" type=\"checkbox\" checked> RFR
+			<br /><input name=\"sites[]\" type=\"checkbox\" value=\"exit109\" checked> Exit109
+			<input name=\"sites[]\" type=\"checkbox\" value=\"roctv\" checked> RocTv 
+			<input name=\"sites[]\" type=\"checkbox\" value=\"whim\" checked> Whim 
+			<input name=\"sites[]\" type=\"checkbox\" value=\"tartan\" checked> Tartan 
+			<input name=\"sites[]\" type=\"checkbox\" value=\"beehive\" checked> Beehive 
+			<input name=\"sites[]\" type=\"checkbox\" value=\"rfr\" checked> RFR
 			<br />
 		</div>
 		<div style=\"float: left; text-align: left;\">

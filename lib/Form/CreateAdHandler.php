@@ -1,5 +1,6 @@
 <?php
 
+require_once './lib/DB/SiteInsertionDao.php';
 require_once './lib/DB/WebAdDao.php';
 require_once './lib/DB/WebAdUserDao.php';
 require_once './lib/Util/LDAPUtil.php';
@@ -14,8 +15,9 @@ class CreateAdHandler{
 			if((isset($_POST['start']) && $_POST['start'] != "")  &&
 			(isset($_POST['size']) && $_POST['size'] != "")  &&
 			(isset($_POST['name']) && $_POST['name'] != "")  &&
-			(isset($_POST['url']) && $_POST['url'] != "")){
-
+			(isset($_POST['url']) && $_POST['url'] != "")  &&
+			(isset($_POST['sites']) && !empty($_POST['sites']))){
+				
 				$start = $_POST['start'];
 				$end = $_POST['end'];
 
@@ -32,7 +34,10 @@ class CreateAdHandler{
 
 					if($filename != ""){
 							
-						WebAdDao::createWebAd($_POST['name'], DateUtil::findPreviousMonday($mysqlStart), $_POST['size'], $filename, $_POST['url'], $mysqlStart, $mysqlEnd);
+						$webad = WebAdDao::createWebAd($_POST['name'], DateUtil::findPreviousMonday($mysqlStart), $_POST['size'], $filename, $_POST['url'], $mysqlStart, $mysqlEnd);
+						foreach($_POST['sites'] as $site){
+							SiteInsertionDao::createSiteInsertion($site, $_POST['size'], $webad->getID());
+						}
 							
 					}else{
 						$context->addError("Error Uploading File, Please Try Again.");

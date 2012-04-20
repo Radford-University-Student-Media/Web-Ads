@@ -18,8 +18,15 @@ SessionUtil::start();
 
 if(isset($_GET['size'])){
 
-	$webad = WebAdDao::getRandomAdBySizeAndDate($_GET['size'], Database::CurrentMySQLDate(), true);
-	
+	if(!isset($_GET['site'])){
+		$webad = WebAdDao::getRandomAdBySizeForDateRange($_GET['size'], Database::CurrentMySQLDate(), true);
+		$_GET['site'] = '';
+	}
+	else{
+		$webad = WebAdDao::getRandomAdBySizeForDateRangeAndSite($_GET['size'], $_GET['site'], Database::CurrentMySQLDate(), true);
+	}
+
+
 	if(!$webad){
 		//SessionUtil::setLastViewed($_GET['size'], 0);
 		WebAdViewDao::setView($_SERVER['REMOTE_ADDR'], gethostbyaddr($_SERVER['REMOTE_ADDR']), $_GET['site'], $_GET['size'], 0);

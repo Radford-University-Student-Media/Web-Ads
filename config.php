@@ -6,13 +6,13 @@ class Config{
 
 		'maint_mode' => false,
 
-		'location' => 'https://php.radford.edu/~smads/webads/',
+		'location' => 'http://localhost/Web-Ads/',
 
 		'mysql_server' => 'localhost',
 
-		'mysql_user' => 'smads',
+		'mysql_user' => 'adsys',
 
-		'mysql_password' => 'Baconstrips2',
+		'mysql_password' => 'pass1234',
 
 		'mysql_database' => 'smads',
 

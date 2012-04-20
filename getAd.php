@@ -18,7 +18,7 @@ SessionUtil::start();
 
 if(isset($_GET['size'])){
 
-	$webad = WebAdDao::getRandomAdBySizeAndDate($_GET['size'], Database::CurrentMySQLDate(), true);
+	$webad = WebAdDao::getRandomAdBySizeForDateRange($_GET['size'], Database::CurrentMySQLDate(), true);
 	
 	if(!$webad){
 		//SessionUtil::setLastViewed($_GET['size'], 0);

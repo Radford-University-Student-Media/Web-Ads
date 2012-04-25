@@ -2,3 +2,5 @@
 .project
 .settings
 .settings/*
+ad_images/*
+config.php

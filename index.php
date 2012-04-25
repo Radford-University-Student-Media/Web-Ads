@@ -107,6 +107,10 @@ else if($context->getPageID() == "accounts"){
 	else
 		$pageBody = new ViewAdsBody();
 }
+else if($context->getPageID() == "stats"){
+	require_once './lib/Site/StatsBody.php';
+	$pageBody = new StatsBody($context);
+}
 else{
 	//$context->setPageID("home");
 	require_once './lib/Site/HomeBody.php';

@@ -60,6 +60,11 @@ class WebAdViewDao {
 			WebAdViewDao::createView($ip, $hostname, $site, $size, $webadID);
 		}
 	}
+	
+	public static function clearViews(){
+		Database::doQuery("TRUNCATE TABLE ".Database::addPrefix('webadviews'));
+		
+	}
 
 }
 

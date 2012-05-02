@@ -64,7 +64,12 @@ if(isset($_POST['action'])){
 			$accountsHandler->handleForm($context, $action);
 		
 		}
-	
+		else if($context->getPageID() == "stats"){
+		
+			require_once './lib/Form/StatsHandler.php';
+			$statsHandler = new StatsHandler();
+			$statsHandler->handleForm($context, $action);
+		}
 	}
 
 }

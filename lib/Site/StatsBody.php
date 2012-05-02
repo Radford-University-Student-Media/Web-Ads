@@ -50,7 +50,12 @@ class StatsBody extends Body{
 
 		}
 
-		$return.="</table></div>";
+		$return.="</table>
+		<form action=\"index.php?pageid=stats\" method=\"post\" onsubmit=\"javascript:confirm('Are you sure you would like to clear all views?')\">
+		<input type=\"hidden\" name=\"action\" value=\"clear\" />
+		<input type=\"submit\" value=\"Clear\" />
+		</form>
+		</div>";
 
 		return $return;
 	}
